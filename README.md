@@ -1,15 +1,14 @@
-# Aprendizaje por Reforzamiento aplicado a rutas peatonales accesibles  
+# Rutas Peatonales Accesibles mediante Aprendizaje por Reforzamiento  
 ## Paso a Desnivel Bertello — Anillo Vial Periférico
 
-Prototipo académico que modela el cambio de las rutas peatonales producido por la
-configuración proyectada del **Paso a Desnivel Bertello**, ubicado en el cruce de la
-**avenida Canta Callao** con la **avenida Bertello**, como parte del proyecto
-**Anillo Vial Periférico (AVP)**.
+Proyecto académico orientado a la búsqueda de rutas peatonales seguras y accesibles
+en el entorno del **Paso a Desnivel Bertello**, ubicado en la intersección de la
+**avenida Canta Callao** y la **avenida Bertello**, como parte del proyecto
+**Anillo Vial Periférico**.
 
-El sistema representa a un **peatón virtual** que aprende, mediante interacción con
-un entorno discretizado, cómo desplazarse desde un punto de origen hasta un destino,
-evitando barreras físicas, vías vehiculares y accesos incompatibles con su perfil de
-movilidad.
+La propuesta representa a un peatón virtual que aprende a desplazarse desde un
+punto de origen hasta un destino, considerando obstáculos urbanos, accesos
+peatonales y diferentes condiciones de movilidad.
 
 ---
 
@@ -20,142 +19,51 @@ movilidad.
 
 ### Integrantes
 
-- Brigitte Scarlett Del Río Ricce
-- Julio Machado Torres
+- Brigitte Scarlett Del Río Ricce  
+- Julio Machado Torres  
 
 ### Docente
 
-- MEng. Maria Fernanda Tejada Begazo
+- MEng. Maria Fernanda Tejada Begazo  
 
 ---
 
 [![Abrir en Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BRIDERI/MIA_Aprendizaje_Reforzamiento_Parcial_G7/blob/main/AR_PARCIAL_G7.ipynb)
 
-## Estado del proyecto
+---
 
-**Funcionando en entorno determinístico.**
+## Descripción del proyecto
 
-La versión actual implementa:
+La construcción del Paso a Desnivel Bertello modifica la configuración del cruce
+entre las avenidas Canta Callao y Bertello. En el nuevo escenario aparecen muros,
+rampas, escaleras, puentes peatonales, vías segregadas y elementos de paisajismo
+que cambian las rutas habituales de los pobladores.
 
-- un entorno Gridworld creado manualmente;
-- dos escenarios: antes y después de la intervención;
-- dos perfiles de movilidad;
-- agente aleatorio como línea base;
-- Q-Learning tabular;
-- SARSA tabular;
-- política epsilon-greedy;
-- evaluación greedy;
-- curvas de aprendizaje;
-- comparación de rutas;
-- pruebas automáticas;
-- experimentos de hiperparámetros;
-- análisis automático de resultados;
-- experimento adicional en entorno estocástico.
+El proyecto modela esta situación mediante un entorno discretizado en el que un
+agente aprende a seleccionar una ruta válida según su perfil de movilidad.
 
-El escenario estocástico se conserva como experimento de análisis. Con la
-configuración actual todavía no alcanza una tasa de éxito adecuada, por lo que no
-se presenta como resultado concluido.
+Se consideran dos perfiles:
 
-## Problemática
+1. **Peatón sin restricciones:** puede utilizar rampas, escaleras y puentes.
+2. **Persona con movilidad reducida:** debe utilizar recorridos accesibles y evitar
+   escaleras.
 
-En la situación actual, el cruce de las avenidas Canta Callao y Bertello funciona
-a nivel y permite determinados desplazamientos peatonales relativamente directos.
+El objetivo del agente es alcanzar el destino con la mayor recompensa acumulada,
+reduciendo movimientos innecesarios y evitando acciones inválidas.
 
-Con la configuración proyectada del Paso a Desnivel Bertello aparecen nuevas
-condiciones:
+---
 
-- muros de contención;
-- elevación de la vía;
-- rampas peatonales;
-- escaleras;
-- puentes o pasos peatonales;
-- vías vehiculares segregadas;
-- árboles;
-- jardineras;
-- elementos de paisajismo;
-- zonas no transitables.
+## Objetivo
 
-Una persona que antes cruzaba directamente para dirigirse a un colegio, iglesia,
-centro de salud, paradero u otro destino tendrá que identificar una nueva ruta.
+Desarrollar y comparar algoritmos básicos de aprendizaje por reforzamiento para
+que un peatón virtual aprenda rutas peatonales seguras y compatibles con su perfil
+de movilidad en un entorno inspirado en el Paso a Desnivel Bertello.
 
-La ruta adecuada depende también del usuario:
+---
 
-1. **Peatón sin restricciones:** puede utilizar rampas y escaleras.
-2. **Movilidad reducida:** no puede utilizar escaleras y debe buscar una ruta
-   accesible mediante rampas y pasos habilitados.
+## Formulación del problema
 
-## Objetivo general
-
-Implementar y comparar algoritmos básicos de aprendizaje por reforzamiento para
-que un peatón virtual aprenda una ruta segura, eficiente y compatible con su perfil
-de movilidad en un entorno discretizado inspirado en el Paso a Desnivel Bertello.
-
-## Objetivos específicos
-
-- Modelar el problema como un Proceso de Decisión de Markov.
-- Representar veredas, muros, vías, rampas, escaleras, puentes y paisajismo.
-- Implementar una línea base aleatoria.
-- Implementar manualmente Q-Learning y SARSA.
-- Comparar aprendizaje, tasa de éxito, pasos y acciones inválidas.
-- Comparar las rutas obtenidas para dos perfiles de movilidad.
-- Analizar el efecto de `alpha`, `gamma` y `epsilon`.
-- Evaluar un entorno determinístico y una variante estocástica.
-- Visualizar las políticas y rutas aprendidas.
-
-## Preguntas del proyecto
-
-1. ¿Qué algoritmo, Q-Learning o SARSA, obtiene una mayor tasa de éxito, menor
-   cantidad de pasos y menor número de acciones inválidas?
-2. ¿Cómo cambia la ruta aprendida entre un peatón sin restricciones y una persona
-   con movilidad reducida?
-3. ¿Cómo cambia la longitud del recorrido entre el escenario anterior y el
-   escenario proyectado?
-
-## Alcance y advertencia metodológica
-
-> Este prototipo utiliza una representación discretizada e hipotética inspirada en
-> el Paso a Desnivel Bertello. No constituye una simulación geométrica exacta, una
-> herramienta oficial de orientación peatonal ni una evaluación definitiva de
-> accesibilidad.
-
-En esta primera entrega no se implementa:
-
-- conexión directa con Revit;
-- procesamiento automático del modelo BIM;
-- georreferenciación;
-- navegación tridimensional;
-- visión artificial;
-- redes neuronales;
-- DQN;
-- datos reales de demanda peatonal.
-
-El proyecto se concentra en la implementación manual y comprensión de técnicas
-básicas de aprendizaje por reforzamiento.
-
-## ¿Por qué Aprendizaje por Reforzamiento?
-
-En un mapa fijo, completamente conocido y con un único criterio de distancia,
-algoritmos como **Dijkstra** o **A\*** encontrarían la ruta más corta de forma más
-directa.
-
-En este proyecto se utiliza aprendizaje por reforzamiento con fines académicos para
-estudiar:
-
-- aprendizaje mediante interacción;
-- exploración y explotación;
-- recompensas acumuladas;
-- penalización de acciones inseguras;
-- políticas diferentes según el perfil del usuario;
-- comportamiento on-policy y off-policy;
-- sensibilidad frente a la incertidumbre;
-- adaptación a condiciones estocásticas.
-
-No se afirma que RL sea siempre superior a los algoritmos clásicos de búsqueda de
-rutas.
-
-## Formulación como MDP
-
-El problema se representa mediante:
+El entorno se modela como un **Proceso de Decisión de Markov (MDP)**:
 
 \[
 \mathcal{M}=\langle \mathcal{S},\mathcal{A},P,R,\gamma\rangle
@@ -163,11 +71,7 @@ El problema se representa mediante:
 
 ### Agente
 
-Peatón virtual que aprende a desplazarse hasta el destino.
-
-### Entorno
-
-Gridworld bidimensional inspirado en la configuración del Paso a Desnivel Bertello.
+Peatón virtual.
 
 ### Estado
 
@@ -175,14 +79,11 @@ Gridworld bidimensional inspirado en la configuración del Paso a Desnivel Berte
 estado = (fila, columna, perfil)
 ```
 
-Dimensiones:
+La grilla contiene:
 
 ```text
 15 filas × 20 columnas × 2 perfiles = 600 estados
 ```
-
-El perfil forma parte del estado. Por ello, una sola tabla Q puede almacenar
-políticas para ambos tipos de usuario.
 
 ### Acciones
 
@@ -193,33 +94,28 @@ políticas para ambos tipos de usuario.
 3 = derecha
 ```
 
-### Espacio de acciones
-
-```text
-4 acciones por estado
-600 estados × 4 acciones = 2400 valores Q
-```
-
 ### Política
 
-Regla que determina qué acción toma el agente en cada estado.
+La política determina qué acción debe elegir el agente en cada estado.
 
-Durante el entrenamiento se usa una política **epsilon-greedy**:
+Durante el entrenamiento se utiliza una política **epsilon-greedy**, que alterna
+entre:
 
-- con probabilidad `epsilon`, explora;
-- en caso contrario, explota la acción con mayor valor Q;
-- los empates entre máximos se resuelven aleatoriamente.
+- **exploración:** probar una acción al azar;
+- **explotación:** seleccionar la acción con mayor valor Q.
 
 ### Episodio
 
-Un episodio comienza en el origen y termina cuando:
+Cada episodio comienza en el punto de origen y termina cuando el agente:
 
-- el agente llega al destino; o
-- alcanza el máximo de pasos permitido.
+- alcanza el destino; o
+- llega al número máximo de pasos.
 
-## Representación del entorno
+---
 
-| Código | Elemento | Perfil sin restricciones | Movilidad reducida |
+## Elementos del entorno
+
+| Código | Elemento | Peatón sin restricciones | Movilidad reducida |
 |:---:|---|:---:|:---:|
 | `0` | Vereda | Permitido | Permitido |
 | `1` | Muro | Bloqueado | Bloqueado |
@@ -232,8 +128,10 @@ Un episodio comienza en el origen y termina cuando:
 | `8` | Origen | Permitido | Permitido |
 | `9` | Destino | Permitido | Permitido |
 
-Los obstáculos no se atraviesan. Si el agente intenta ingresar en una celda
-bloqueada, permanece en su posición y recibe la penalización correspondiente.
+Cuando el agente intenta ingresar en una celda bloqueada, permanece en su posición
+y recibe una penalización.
+
+---
 
 ## Sistema de recompensas
 
@@ -241,61 +139,52 @@ bloqueada, permanece en su posición y recibe la penalización correspondiente.
 |---|---:|
 | Movimiento normal | `-1` |
 | Llegar al destino | `+100` |
-| Chocar con un muro o salir de la grilla | `-25` |
-| Invadir una vía vehicular | `-40` |
+| Intentar atravesar un muro | `-25` |
+| Intentar ingresar en una vía vehicular | `-40` |
 | Chocar con un árbol | `-15` |
 | Chocar con una jardinera | `-15` |
-| Usar una escalera con movilidad reducida | `-50` |
+| Utilizar una escalera con movilidad reducida | `-50` |
 | Superar el máximo de pasos | `-20` |
 
-La única recompensa positiva es llegar al destino. Las rampas, escaleras
-permitidas y puentes tienen el mismo costo de movimiento que una vereda.
+Las recompensas orientan al agente hacia rutas válidas, seguras y eficientes.
 
-Esta decisión evita que el agente acumule recompensas repitiendo movimientos sobre
-una rampa o puente, comportamiento conocido como **reward hacking**.
+---
 
 ## Algoritmos implementados
 
 ### Agente aleatorio
 
-Selecciona acciones al azar y no actualiza ninguna tabla Q.
-
-Su función es actuar como línea base. Permite verificar si la mejora observada se
-debe realmente al aprendizaje.
+Selecciona acciones al azar y se utiliza como referencia inicial para comparar el
+aprendizaje de los agentes entrenados.
 
 ### Q-Learning
 
-Algoritmo de control TD **off-policy**:
+Algoritmo de control **off-policy** que actualiza la tabla Q utilizando el mayor
+valor estimado del siguiente estado:
 
 \[
 Q(s,a)\leftarrow Q(s,a)+
 \alpha\left[r+\gamma\max_{a'}Q(s',a')-Q(s,a)\right]
 \]
 
-Q-Learning usa el mejor valor futuro estimado, aunque durante el entrenamiento el
-agente esté explorando.
-
 ### SARSA
 
-Algoritmo de control TD **on-policy**:
+Algoritmo de control **on-policy** que actualiza la tabla Q utilizando la siguiente
+acción realmente seleccionada:
 
 \[
 Q(s,a)\leftarrow Q(s,a)+
 \alpha\left[r+\gamma Q(s',a')-Q(s,a)\right]
 \]
 
-SARSA utiliza la siguiente acción realmente seleccionada por la política
-epsilon-greedy.
-
-### Diferencia central
+### Diferencia principal
 
 ```text
-Q-Learning → aprende mirando la mejor acción futura posible.
-SARSA      → aprende considerando la acción futura que realmente tomará.
+Q-Learning → utiliza la mejor acción futura estimada.
+SARSA      → utiliza la acción futura que realmente tomará el agente.
 ```
 
-En entornos con riesgo y exploración, SARSA puede desarrollar una política más
-conservadora.
+---
 
 ## Hiperparámetros principales
 
@@ -313,74 +202,57 @@ EPSILON_DECAY = 0.995
 MAX_PASOS = 200
 ```
 
-### Interpretación
+- `alpha`: tasa de aprendizaje.
+- `gamma`: factor de descuento.
+- `epsilon`: probabilidad de exploración.
+- `epsilon_decay`: reducción progresiva de la exploración.
+- `MAX_PASOS`: límite de duración de un episodio.
 
-- `alpha`: cuánto corrige el agente sus valores Q en cada actualización.
-- `gamma`: cuánto valora las recompensas futuras.
-- `epsilon`: probabilidad de explorar.
-- `epsilon_decay`: velocidad con la que disminuye la exploración.
-- `MAX_PASOS`: evita episodios infinitos.
+---
 
-## Dinámica determinística y estocástica
-
-### Entorno determinístico
-
-La acción solicitada se ejecuta exactamente.
-
-### Entorno estocástico
-
-La variante experimental utiliza:
+## Flujo de entrenamiento
 
 ```text
-80 % → ejecuta la acción solicitada
-10 % → permanece en la misma celda
-10 % → se desvía lateralmente
-```
-
-Esta incertidumbre puede representar congestión, bloqueo temporal o dificultad de
-desplazamiento.
-
-## Flujo de funcionamiento
-
-```text
-Construcción del mapa
+Construcción del escenario
         ↓
-Creación del entorno MDP
+Creación del entorno
         ↓
 Inicio del episodio
         ↓
-El agente observa el estado
+Observación del estado
         ↓
-Selecciona una acción con epsilon-greedy
+Selección de una acción
         ↓
-El entorno ejecuta la transición
+Transición al siguiente estado
         ↓
-Entrega recompensa y siguiente estado
+Recepción de una recompensa
         ↓
-Q-Learning o SARSA actualiza la tabla Q
+Actualización de la tabla Q
         ↓
-Se repite hasta destino o timeout
+Repetición hasta alcanzar el destino
         ↓
-Evaluación final con política greedy
+Evaluación de la política aprendida
 ```
 
-## Resultados de la ejecución actual
+---
 
-Los siguientes resultados corresponden a la ejecución guardada en la versión
-actual del notebook. Pueden variar si se modifican el mapa, los hiperparámetros o
-la semilla.
+## Resultados de referencia
 
-### Comparación frente al agente aleatorio
+La ejecución incluida en el notebook utiliza una semilla fija para facilitar la
+reproducción de los resultados.
 
-| Método | Recompensa media | Tasa de éxito | Acciones inválidas por episodio |
+### Entrenamiento determinístico
+
+| Método | Tasa de éxito | Recompensa media | Acciones inválidas por episodio |
 |---|---:|---:|---:|
-| Agente aleatorio | `-1266.86` | `0.48 %` | `45.19` |
-| Q-Learning, últimos 500 episodios | `67.00` | `100 %` | `0.24` |
-| SARSA, últimos 500 episodios | `66.70` | `100 %` | `0.24` |
+| Agente aleatorio | `0.48 %` | `-1266.86` | `45.19` |
+| Q-Learning | `100 %` | `67.00` | `0.24` |
+| SARSA | `100 %` | `66.70` | `0.24` |
 
-Los dos algoritmos entrenados superan ampliamente la línea base.
+Los dos algoritmos entrenados alcanzan el destino de manera consistente y superan
+ampliamente el comportamiento del agente aleatorio.
 
-### Evaluación greedy final
+### Evaluación de rutas
 
 | Algoritmo | Perfil | Éxito | Pasos | Recompensa |
 |---|---|:---:|---:|---:|
@@ -389,116 +261,161 @@ Los dos algoritmos entrenados superan ampliamente la línea base.
 | SARSA | Peatón sin restricciones | Sí | `25` | `76` |
 | SARSA | Movilidad reducida | Sí | `27` | `74` |
 
-### Comportamiento frente al riesgo
+### Comportamiento frente a la vía vehicular
 
-Invasiones de la vía vehicular durante todo el entrenamiento:
-
-| Algoritmo | Invasiones |
+| Algoritmo | Invasiones registradas durante el entrenamiento |
 |---|---:|
 | Q-Learning | `2262` |
 | SARSA | `1320` |
 
-En los últimos 500 episodios:
+En esta ejecución, SARSA registra menos invasiones de vía durante el aprendizaje.
 
-| Algoritmo | Invasiones |
-|---|---:|
-| Q-Learning | `74` |
-| SARSA | `57` |
+---
 
-En esta ejecución, SARSA invadió la vía menos veces, resultado coherente con su
-naturaleza on-policy y con un comportamiento más conservador durante la
-exploración.
+## Visualizaciones incluidas
 
-### Accesibilidad
+El notebook presenta:
 
-| Algoritmo | Perfil | Longitud | Escaleras | Rampas | Puente |
-|---|---|---:|---:|---:|---:|
-| Q-Learning | Sin restricciones | `25` | `0` | `4` | `4` |
-| Q-Learning | Movilidad reducida | `25` | `0` | `4` | `4` |
-| SARSA | Sin restricciones | `25` | `0` | `4` | `3` |
-| SARSA | Movilidad reducida | `27` | `0` | `5` | `3` |
+- escenario anterior;
+- escenario proyectado;
+- curvas de recompensa;
+- promedio móvil de recompensa;
+- evolución del número de pasos;
+- evolución de epsilon;
+- comparación entre Q-Learning y SARSA;
+- rutas por perfil de movilidad;
+- mapas de política;
+- mapas de función de valor;
+- comparación de acciones inválidas;
+- evaluación del entorno estocástico;
+- análisis de hiperparámetros.
 
-Las rutas de movilidad reducida no utilizan escaleras, por lo que cumplen la
-restricción programada.
+---
 
-En SARSA, la movilidad reducida presenta un sobrecosto de:
+## Pruebas del entorno
+
+El notebook verifica automáticamente:
+
+- estado inicial;
+- límites de la grilla;
+- bloqueo de muros;
+- bloqueo de vías vehiculares;
+- bloqueo de árboles y jardineras;
+- uso de rampas;
+- restricción de escaleras para movilidad reducida;
+- finalización al alcanzar el destino;
+- dimensiones de la tabla Q;
+- codificación y decodificación de estados.
+
+---
+
+## Ejecución en Google Colab
+
+1. Abrir el notebook mediante el botón **Abrir en Google Colab**.
+2. Seleccionar:
 
 ```text
-+2 celdas = +8 %
+Entorno de ejecución → Ejecutar todas
 ```
 
-### Comparación antes y después
+3. Esperar la finalización del entrenamiento.
+4. Revisar los gráficos, tablas y rutas generadas.
 
-En la geometría discretizada actual:
+---
 
-| Perfil | Ruta antes | Ruta después | Incremento |
-|---|---:|---:|---:|
-| Sin restricciones | `25` | `25` | `0 %` |
-| Movilidad reducida | `25` | `25` | `0 %` |
+## Ejecución local
 
-Este resultado no significa que la infraestructura real no incremente el recorrido.
-Significa que las posiciones actuales del origen, destino y accesos dentro de la
-grilla producen rutas de igual longitud.
+```bash
+git clone https://github.com/BRIDERI/MIA_Aprendizaje_Reforzamiento_Parcial_G7.git
+cd MIA_Aprendizaje_Reforzamiento_Parcial_G7
+```
 
+Crear un entorno virtual:
 
-## Decisiones de diseño
+```bash
+python -m venv .venv
+```
 
-- Se emplea un Gridworld 2D para mantener el foco en RL tabular.
-- El perfil de movilidad forma parte del estado.
-- Se usa una tabla Q de `600 × 4`.
-- Los obstáculos bloquean físicamente el movimiento.
-- La escalera es inválida para movilidad reducida.
-- La única recompensa positiva es alcanzar el destino.
-- Cada movimiento tiene costo para favorecer rutas cortas.
-- Se fija la semilla `42` para reproducibilidad.
-- Los algoritmos se implementan manualmente.
-- Los empates en acciones greedy se resuelven aleatoriamente.
-- La evaluación final usa `epsilon = 0`.
-- Se compara con un agente aleatorio.
-- Los resultados se generan desde la ejecución real del notebook.
+Activar en Windows:
 
+```bash
+.venv\Scripts\activate
+```
 
-## Limitaciones
+Activar en Linux o macOS:
 
-- El mapa es hipotético y discretizado.
-- Las celdas no tienen todavía equivalencia validada en metros.
-- No existe georreferenciación.
-- No se utilizan datos reales de peatones.
-- No se modelan semáforos ni tiempos de espera.
-- No se simulan pendientes reales.
-- El BIM no se procesa automáticamente.
-- El entorno estocástico requiere nuevos ajustes.
-- Los resultados no representan una recomendación oficial de ruta.
+```bash
+source .venv/bin/activate
+```
 
-## Escalabilidad futura con BIM
+Instalar dependencias:
 
-En una fase posterior, el modelo BIM podría utilizarse para extraer:
+```bash
+pip install numpy pandas matplotlib jupyter
+```
 
-- muros;
-- veredas;
-- rampas;
-- escaleras;
-- puentes;
-- vías;
-- árboles;
-- jardineras;
-- pendientes;
-- niveles;
-- coordenadas.
+Abrir el notebook:
 
-El flujo futuro sería:
+```bash
+jupyter notebook AR_PARCIAL_G7.ipynb
+```
+
+---
+
+## Dependencias
+
+```text
+Python
+NumPy
+pandas
+matplotlib
+Jupyter Notebook
+```
+
+---
+
+## Estructura del repositorio
+
+```text
+MIA_Aprendizaje_Reforzamiento_Parcial_G7/
+├── AR_PARCIAL_G7.ipynb
+└── README.md
+```
+
+---
+
+## Proyección
+
+El modelo puede ampliarse incorporando información proveniente del modelo BIM:
 
 ```text
 Modelo BIM
     ↓
-Extracción de geometría y propiedades
+Extracción de veredas, muros, rampas y escaleras
     ↓
-Matriz de ocupación o grafo peatonal
+Conversión a una matriz de ocupación o grafo peatonal
     ↓
-Entorno de aprendizaje por reforzamiento
+Entrenamiento del agente
     ↓
-Políticas según perfil de movilidad
+Generación de rutas según el perfil de movilidad
     ↓
-Visualización de rutas en el modelo
+Visualización de la ruta en el modelo
 ```
 
+También puede ampliarse con:
+
+- coordenadas reales;
+- pendientes;
+- tiempos de desplazamiento;
+- congestión peatonal;
+- semáforos;
+- accesos temporalmente bloqueados;
+- distintos orígenes y destinos;
+- perfiles adicionales de usuario.
+
+---
+
+## Principio del proyecto
+
+> El agente no recibe la ruta correcta. La descubre mediante interacción,
+> recompensas y corrección progresiva de sus decisiones.
