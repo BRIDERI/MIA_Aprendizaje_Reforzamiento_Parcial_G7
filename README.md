@@ -24,7 +24,7 @@ peatonales y diferentes condiciones de movilidad.
 
 ### Docente
 
-- MEng. Maria Fernanda Tejada Begazo  
+- Mg. Maria Fernanda Tejada Begazo  
 
 ---
 
